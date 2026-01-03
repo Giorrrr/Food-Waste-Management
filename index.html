@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Waste Management System</title>
     <style>
         * {
@@ -12,7 +13,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
@@ -27,7 +28,7 @@
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
@@ -55,7 +56,7 @@
             background: white;
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -66,9 +67,17 @@
             margin-top: 10px;
         }
 
-        .stat-card.total h3 { color: #667eea; }
-        .stat-card.critical h3 { color: #f59e0b; }
-        .stat-card.expired h3 { color: #ef4444; }
+        .stat-card.total h3 {
+            color: #667eea;
+        }
+
+        .stat-card.critical h3 {
+            color: #f59e0b;
+        }
+
+        .stat-card.expired h3 {
+            color: #ef4444;
+        }
 
         .actions {
             display: flex;
@@ -112,7 +121,7 @@
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
             display: none;
         }
@@ -158,7 +167,7 @@
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .product-card {
@@ -219,10 +228,21 @@
             font-size: 14px;
         }
 
-        .badge.safe { background: #10b981; }
-        .badge.warning { background: #f59e0b; }
-        .badge.critical { background: #ef4444; }
-        .badge.expired { background: #dc2626; }
+        .badge.safe {
+            background: #10b981;
+        }
+
+        .badge.warning {
+            background: #f59e0b;
+        }
+
+        .badge.critical {
+            background: #ef4444;
+        }
+
+        .badge.expired {
+            background: #dc2626;
+        }
 
         .product-actions {
             display: flex;
@@ -238,9 +258,20 @@
             font-size: 18px;
         }
 
-        .btn-ai { background: #8b5cf6; color: white; }
-        .btn-edit { background: #3b82f6; color: white; }
-        .btn-delete { background: #ef4444; color: white; }
+        .btn-ai {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .btn-edit {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
 
         .btn-icon:hover {
             transform: scale(1.1);
@@ -293,7 +324,7 @@
             padding: 30px;
             border-radius: 15px;
             margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: none;
         }
 
@@ -316,7 +347,7 @@
             line-height: 1.8;
             font-size: 15px;
             color: #333;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .ai-content h3 {
@@ -337,7 +368,8 @@
             text-align: justify;
         }
 
-        .ai-content ul, .ai-content ol {
+        .ai-content ul,
+        .ai-content ol {
             margin: 15px 0;
             padding-left: 25px;
         }
@@ -372,7 +404,7 @@
             margin: 10px 0;
             border-radius: 8px;
             border-left: 4px solid #764ba2;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .ai-recommendation-item strong {
@@ -466,8 +498,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .empty-state {
@@ -488,7 +525,7 @@
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .header h1 {
                 font-size: 1.8em;
             }
@@ -504,6 +541,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -519,42 +557,40 @@
                     <p>Total Produk</p>
                     <h3 id="totalProducts">0</h3>
                 </div>
-                <span style="font-size: 3em;">📦</span>
+                <span style="font-size: 3em">📦</span>
             </div>
             <div class="stat-card critical">
                 <div>
                     <p>Segera Expired</p>
                     <h3 id="criticalProducts">0</h3>
                 </div>
-                <span style="font-size: 3em;">⚠️</span>
+                <span style="font-size: 3em">⚠️</span>
             </div>
             <div class="stat-card expired">
                 <div>
                     <p>Sudah Expired</p>
                     <h3 id="expiredProducts">0</h3>
                 </div>
-                <span style="font-size: 3em;">❌</span>
+                <span style="font-size: 3em">❌</span>
             </div>
         </div>
 
         <div class="actions">
-            <button class="btn btn-primary" onclick="toggleForm()">
-                ➕ Tambah Produk
-            </button>
-            <button class="btn btn-purple" onclick="toggleApiKey()">
-                ✨ <span id="apiKeyBtnText">Setup API Key</span>
-            </button>
+            <button class="btn btn-primary" onclick="toggleForm()">➕ Tambah Produk</button>
+            <button class="btn btn-purple" onclick="toggleApiKey()">✨ <span id="apiKeyBtnText">Setup API
+                    Key</span></button>
         </div>
 
         <div class="form-container" id="apiKeyForm">
             <h2>🔑 Setup Gemini API Key</h2>
-            <p style="margin: 15px 0; color: #666;">
-                Dapatkan API Key gratis di: <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color: #667eea;">Google AI Studio</a>
-            </p>
-            <div style="display: flex; gap: 10px;">
-                <input type="password" id="apiKeyInput" placeholder="Masukkan API Key Gemini" style="flex: 1; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px;">
+            <p style="margin: 15px 0; color: #666">Dapatkan API Key gratis di: <a
+                    href="https://makersuite.google.com/app/apikey" target="_blank" style="color: #667eea">Google AI
+                    Studio</a></p>
+            <div style="display: flex; gap: 10px">
+                <input type="password" id="apiKeyInput" placeholder="Masukkan API Key Gemini"
+                    style="flex: 1; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px" />
                 <button class="btn btn-primary" onclick="saveApiKey()">Simpan</button>
-                <button class="btn" style="background: #e5e7eb;" onclick="toggleApiKey()">Batal</button>
+                <button class="btn" style="background: #e5e7eb" onclick="toggleApiKey()">Batal</button>
             </div>
         </div>
 
@@ -563,7 +599,7 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label>Nama Produk *</label>
-                    <input type="text" id="productName" placeholder="Contoh: Susu Full Cream" required>
+                    <input type="text" id="productName" placeholder="Contoh: Susu Full Cream" required />
                 </div>
                 <div class="form-group">
                     <label>Kategori *</label>
@@ -578,42 +614,39 @@
                 </div>
                 <div class="form-group">
                     <label>Jumlah (unit) *</label>
-                    <input type="number" id="productQuantity" placeholder="50" required>
+                    <input type="number" id="productQuantity" placeholder="50" required />
                 </div>
                 <div class="form-group">
                     <label>Tanggal Expired *</label>
-                    <input type="date" id="productExpiry" required>
+                    <input type="date" id="productExpiry" required />
                 </div>
                 <div class="form-group">
                     <label>Harga (Rp) *</label>
-                    <input type="number" id="productPrice" placeholder="25000" required>
+                    <input type="number" id="productPrice" placeholder="25000" required />
                 </div>
                 <div class="form-group">
                     <label>Lokasi/Rak *</label>
-                    <input type="text" id="productLocation" placeholder="Rak A-12" required>
+                    <input type="text" id="productLocation" placeholder="Rak A-12" required />
                 </div>
             </div>
-            <div style="display: flex; gap: 15px;">
-                <button class="btn btn-primary" onclick="saveProduct()" style="flex: 1;">
-                    💾 <span id="saveBtnText">Simpan Produk</span>
-                </button>
-                <button class="btn" style="background: #e5e7eb;" onclick="cancelForm()">
-                    ❌ Batal
-                </button>
+            <div style="display: flex; gap: 15px">
+                <button class="btn btn-primary" onclick="saveProduct()" style="flex: 1">💾 <span id="saveBtnText">Simpan
+                        Produk</span></button>
+                <button class="btn" style="background: #e5e7eb" onclick="cancelForm()">❌ Batal</button>
             </div>
         </div>
 
         <div class="products-container">
-            <h2 style="margin-bottom: 20px;">📋 Daftar Produk</h2>
+            <h2 style="margin-bottom: 20px">📋 Daftar Produk</h2>
             <div id="productsList"></div>
         </div>
 
         <div class="ai-suggestion" id="aiSuggestion">
             <h2>✨ Saran AI - Gemini</h2>
             <div class="ai-content" id="aiContent"></div>
-            <div class="video-container" id="videoContainer" style="display: none;">
+            <div class="video-container" id="videoContainer" style="display: none">
                 <h3>🎥 Cari Video Tutorial di YouTube</h3>
-                <p style="color: #666; margin-bottom: 15px;">Klik untuk mencari video tutorial yang relevan:</p>
+                <p style="color: #666; margin-bottom: 15px">Klik untuk mencari video tutorial yang relevan:</p>
                 <div class="video-links" id="videoLinks"></div>
             </div>
         </div>
@@ -622,78 +655,78 @@
     <script>
         let products = [];
         let editingId = null;
-        let apiKey = '';
+        let apiKey = "";
 
         function init() {
-            const saved = localStorage.getItem('foodProducts');
+            const saved = localStorage.getItem("foodProducts");
             if (saved) {
                 products = JSON.parse(saved);
             }
-            const savedKey = localStorage.getItem('geminiApiKey');
+            const savedKey = localStorage.getItem("geminiApiKey");
             if (savedKey) {
                 apiKey = savedKey;
-                document.getElementById('apiKeyBtnText').textContent = 'Update API Key';
+                document.getElementById("apiKeyBtnText").textContent = "Update API Key";
             }
             renderProducts();
             updateStats();
         }
 
         function saveToLocalStorage() {
-            localStorage.setItem('foodProducts', JSON.stringify(products));
+            localStorage.setItem("foodProducts", JSON.stringify(products));
         }
 
         function toggleForm() {
-            const form = document.getElementById('productForm');
-            form.classList.toggle('active');
-            if (!form.classList.contains('active')) {
+            const form = document.getElementById("productForm");
+            form.classList.toggle("active");
+            if (!form.classList.contains("active")) {
                 cancelForm();
             }
         }
 
         function toggleApiKey() {
-            const form = document.getElementById('apiKeyForm');
-            form.classList.toggle('active');
-            if (form.classList.contains('active')) {
-                document.getElementById('apiKeyInput').value = apiKey;
+            const form = document.getElementById("apiKeyForm");
+            form.classList.toggle("active");
+            if (form.classList.contains("active")) {
+                document.getElementById("apiKeyInput").value = apiKey;
             }
         }
 
         function saveApiKey() {
-            const key = document.getElementById('apiKeyInput').value.trim();
+            const key = document.getElementById("apiKeyInput").value.trim();
             if (!key) {
-                alert('Masukkan API Key terlebih dahulu!');
+                alert("Masukkan API Key terlebih dahulu!");
                 return;
             }
             apiKey = key;
-            localStorage.setItem('geminiApiKey', apiKey);
-            document.getElementById('apiKeyBtnText').textContent = 'Update API Key';
+            localStorage.setItem("geminiApiKey", apiKey);
+            document.getElementById("apiKeyBtnText").textContent = "Update API Key";
             toggleApiKey();
-            alert('✅ API Key berhasil disimpan!');
+            alert("✅ API Key berhasil disimpan!");
         }
 
         function cancelForm() {
             editingId = null;
-            document.getElementById('productName').value = '';
-            document.getElementById('productCategory').value = 'Dairy';
-            document.getElementById('productQuantity').value = '';
-            document.getElementById('productExpiry').value = '';
-            document.getElementById('productPrice').value = '';
-            document.getElementById('productLocation').value = '';
-            document.getElementById('formTitle').textContent = '➕ Tambah Produk Baru';
-            document.getElementById('saveBtnText').textContent = 'Simpan Produk';
-            document.getElementById('productForm').classList.remove('active');
+            document.getElementById("productName").value = "";
+            document.getElementById("productCategory").value = "Dairy";
+            document.getElementById("productQuantity").value = "";
+            document.getElementById("productExpiry").value = "";
+            document.getElementById("productPrice").value = "";
+            document.getElementById("productLocation").value = "";
+            document.getElementById("formTitle").textContent = "➕ Tambah Produk Baru";
+            document.getElementById("saveBtnText").textContent = "Simpan Produk";
+            document.getElementById("productForm").classList.remove("active");
         }
 
         function saveProduct() {
-            const name = document.getElementById('productName').value.trim();
-            const category = document.getElementById('productCategory').value;
-            const quantity = document.getElementById('productQuantity').value;
-            const expiryDate = document.getElementById('productExpiry').value;
-            const price = document.getElementById('productPrice').value;
-            const location = document.getElementById('productLocation').value.trim();
+            const name = document.getElementById("productName").value.trim();
+            const category = document.getElementById("productCategory").value;
+            const quantity = document.getElementById("productQuantity").value;
+            const expiryDate = document.getElementById("productExpiry").value;
+            const price = document.getElementById("productPrice").value;
+            const location = document.getElementById("productLocation").value.trim();
 
             if (!name || !quantity || !expiryDate || !price || !location) {
-                alert('⚠️ Mohon lengkapi semua field!');
+                alert("⚠️ Mohon lengkapi semua field!");
                 return;
             }
 
@@ -704,11 +737,11 @@
                 quantity,
                 expiryDate,
                 price,
-                location
+                location,
             };
 
             if (editingId) {
-                products = products.map(p => p.id === editingId ? product : p);
+                products = products.map((p) => (p.id === editingId ? product : p));
             } else {
                 products.push(product);
             }
@@ -717,33 +750,33 @@
             renderProducts();
             updateStats();
             cancelForm();
-            alert(editingId ? '✅ Produk berhasil diupdate!' : '✅ Produk berhasil ditambahkan!');
+            alert(editingId ? "✅ Produk berhasil diupdate!" : "✅ Produk berhasil ditambahkan!");
         }
 
         function editProduct(id) {
-            const product = products.find(p => p.id === id);
+            const product = products.find((p) => p.id === id);
             if (!product) return;
 
             editingId = id;
-            document.getElementById('productName').value = product.name;
-            document.getElementById('productCategory').value = product.category;
-            document.getElementById('productQuantity').value = product.quantity;
-            document.getElementById('productExpiry').value = product.expiryDate;
-            document.getElementById('productPrice').value = product.price;
-            document.getElementById('productLocation').value = product.location;
-            document.getElementById('formTitle').textContent = '✏️ Edit Produk';
-            document.getElementById('saveBtnText').textContent = 'Update Produk';
-            document.getElementById('productForm').classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById("productName").value = product.name;
+            document.getElementById("productCategory").value = product.category;
+            document.getElementById("productQuantity").value = product.quantity;
+            document.getElementById("productExpiry").value = product.expiryDate;
+            document.getElementById("productPrice").value = product.price;
+            document.getElementById("productLocation").value = product.location;
+            document.getElementById("formTitle").textContent = "✏️ Edit Produk";
+            document.getElementById("saveBtnText").textContent = "Update Produk";
+            document.getElementById("productForm").classList.add("active");
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         function deleteProduct(id) {
-            if (!confirm('❌ Apakah Anda yakin ingin menghapus produk ini?')) return;
-            products = products.filter(p => p.id !== id);
+            if (!confirm("❌ Apakah Anda yakin ingin menghapus produk ini?")) return;
+            products = products.filter((p) => p.id !== id);
             saveToLocalStorage();
             renderProducts();
             updateStats();
-            alert('✅ Produk berhasil dihapus!');
+            alert("✅ Produk berhasil dihapus!");
         }
 
         function getDaysUntilExpiry(expiryDate) {
@@ -757,25 +790,25 @@
         }
 
         function getUrgencyLevel(days) {
-            if (days < 0) return { level: 'expired', label: 'EXPIRED', color: 'expired' };
-            if (days === 0) return { level: 'critical', label: 'HARI INI', color: 'critical' };
-            if (days <= 2) return { level: 'critical', label: `${days} hari lagi`, color: 'critical' };
-            if (days <= 5) return { level: 'warning', label: `${days} hari lagi`, color: 'warning' };
-            return { level: 'safe', label: `${days} hari lagi`, color: 'safe' };
+            if (days < 0) return { level: "expired", label: "EXPIRED", color: "expired" };
+            if (days === 0) return { level: "critical", label: "HARI INI", color: "critical" };
+            if (days <= 2) return { level: "critical", label: `${days} hari lagi`, color: "critical" };
+            if (days <= 5) return { level: "warning", label: `${days} hari lagi`, color: "warning" };
+            return { level: "safe", label: `${days} hari lagi`, color: "safe" };
         }
 
         function getAlertMessage(days) {
             if (days < 0) return `🔴 Produk sudah EXPIRED ${Math.abs(days)} hari yang lalu! Segera buang atau donasikan jika masih layak.`;
-            if (days === 0) return '🔴 Produk expired HARI INI! Segera lakukan diskon besar atau donasi.';
-            if (days === 1) return '🟠 Produk expired BESOK! Pertimbangkan diskon 50% atau bundling produk.';
-            if (days === 2) return '🟡 Expired dalam 2 hari. Mulai diskon 30-40% atau buat promo khusus.';
+            if (days === 0) return "🔴 Produk expired HARI INI! Segera lakukan diskon besar atau donasi.";
+            if (days === 1) return "🟠 Produk expired BESOK! Pertimbangkan diskon 50% atau bundling produk.";
+            if (days === 2) return "🟡 Expired dalam 2 hari. Mulai diskon 30-40% atau buat promo khusus.";
             if (days <= 5) return `🟡 Expired dalam ${days} hari. Pertimbangkan diskon 20% atau program loyalitas.`;
-            return '';
+            return "";
         }
 
         function renderProducts() {
-            const container = document.getElementById('productsList');
-            
+            const container = document.getElementById("productsList");
+
             if (products.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
@@ -787,21 +820,20 @@
                 return;
             }
 
-            const sorted = [...products].sort((a, b) => 
-                getDaysUntilExpiry(a.expiryDate) - getDaysUntilExpiry(b.expiryDate)
-            );
+            const sorted = [...products].sort((a, b) => getDaysUntilExpiry(a.expiryDate) - getDaysUntilExpiry(b.expiryDate));
 
-            container.innerHTML = sorted.map(product => {
-                const daysLeft = getDaysUntilExpiry(product.expiryDate);
-                const urgency = getUrgencyLevel(daysLeft);
-                const alertMsg = getAlertMessage(daysLeft);
-                const expiryDateFormatted = new Date(product.expiryDate).toLocaleDateString('id-ID', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                });
+            container.innerHTML = sorted
+                .map((product) => {
+                    const daysLeft = getDaysUntilExpiry(product.expiryDate);
+                    const urgency = getUrgencyLevel(daysLeft);
+                    const alertMsg = getAlertMessage(daysLeft);
+                    const expiryDateFormatted = new Date(product.expiryDate).toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                    });
 
-                return `
+                    return `
                     <div class="product-card ${urgency.color}">
                         <div class="product-header">
                             <div class="product-title">
@@ -825,7 +857,7 @@
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Harga</span>
-                                <span class="detail-value">Rp ${parseInt(product.price).toLocaleString('id-ID')}</span>
+                                <span class="detail-value">Rp ${parseInt(product.price).toLocaleString("id-ID")}</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Lokasi</span>
@@ -835,101 +867,241 @@
                         <div style="margin-top: 10px; color: #666;">
                             📅 Expired: ${expiryDateFormatted}
                         </div>
-                        ${alertMsg ? `
-                            <div class="alert-box ${daysLeft <= 2 ? 'critical' : ''}">
+                        ${alertMsg
+                            ? `
+                            <div class="alert-box ${daysLeft <= 2 ? "critical" : ""}">
                                 <strong>⚠️ Action Required!</strong>
                                 <p>${alertMsg}</p>
                             </div>
-                        ` : ''}
+                        `
+                            : ""
+                        }
                     </div>
                 `;
-            }).join('');
+                })
+                .join("");
         }
 
         function updateStats() {
             const total = products.length;
-            const critical = products.filter(p => {
+            const critical = products.filter((p) => {
                 const days = getDaysUntilExpiry(p.expiryDate);
                 return days <= 2 && days >= 0;
             }).length;
-            const expired = products.filter(p => getDaysUntilExpiry(p.expiryDate) < 0).length;
+            const expired = products.filter((p) => getDaysUntilExpiry(p.expiryDate) < 0).length;
 
-            document.getElementById('totalProducts').textContent = total;
-            document.getElementById('criticalProducts').textContent = critical;
-            document.getElementById('expiredProducts').textContent = expired;
+            document.getElementById("totalProducts").textContent = total;
+            document.getElementById("criticalProducts").textContent = critical;
+            document.getElementById("expiredProducts").textContent = expired;
+        }
+
+        function getDaysUntilExpiry(expiryDate) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const expiry = new Date(expiryDate);
+            expiry.setHours(0, 0, 0, 0);
+            const diffTime = expiry - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
         }
 
         async function getAISuggestion(id) {
             if (!apiKey) {
-                alert('⚠️ Silakan setup API Key Gemini terlebih dahulu!');
+                alert("⚠️ Silakan setup API Key Gemini terlebih dahulu!");
                 toggleApiKey();
                 return;
             }
 
-            const product = products.find(p => p.id === id);
+            const product = products.find((p) => p.id === id);
             if (!product) return;
 
-            const aiSection = document.getElementById('aiSuggestion');
-            const aiContent = document.getElementById('aiContent');
-            const videoContainer = document.getElementById('videoContainer');
-            
-            aiSection.classList.add('active');
+            const aiSection = document.getElementById("aiSuggestion");
+            const aiContent = document.getElementById("aiContent");
+            const videoContainer = document.getElementById("videoContainer");
+
+            aiSection.classList.add("active");
             aiContent.innerHTML = '<div class="loading"><div class="spinner"></div><p>Meminta saran kepada AI...</p></div>';
-            videoContainer.style.display = 'none';
-            
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            videoContainer.style.display = "none";
+
+            window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 
             const daysLeft = getDaysUntilExpiry(product.expiryDate);
-            const prompt = `Saya memiliki produk di supermarket dengan detail:
+
+            // Buat prompt yang lebih spesifik berdasarkan kondisi produk
+            let contextPrompt = "";
+            let actionFocus = "";
+
+            if (daysLeft < 0) {
+                // Produk sudah expired
+                const daysExpired = Math.abs(daysLeft);
+                contextPrompt = `PENTING: Produk ini sudah EXPIRED ${daysExpired} hari yang lalu. Produk ini TIDAK BOLEH dijual atau dikonsumsi manusia.`;
+                actionFocus = `Berikan 3-4 rekomendasi KHUSUS untuk produk yang sudah expired:
+1. Cara pembuangan yang aman dan sesuai regulasi
+2. Apakah bisa didaur ulang atau dikompos (jelaskan caranya)
+3. Apakah bisa didonasikan untuk pakan ternak/hewan (jika aman dan sesuai kategori)
+4. Pelajaran untuk mencegah hal serupa di masa depan
+5. Dokumentasi untuk audit dan compliance
+
+JANGAN rekomendasikan untuk dijual, dikonsumsi, atau diberikan ke manusia.`;
+            } else if (daysLeft === 0) {
+                // Expired hari ini
+                contextPrompt = `URGENT: Produk ini akan EXPIRED HARI INI. Ini adalah kesempatan terakhir untuk mengurangi kerugian.`;
+                actionFocus = `Berikan 3-4 rekomendasi URGENT untuk produk yang expired hari ini:
+1. Diskon flash sale 70-90% untuk jual habis dalam beberapa jam
+2. Bundle dengan produk lain (buy 1 get 1 free)
+3. Donasi SEGERA ke food bank atau lembaga sosial (hubungi sebelum tutup toko)
+4. Program "Pay What You Want" atau barter dengan karyawan
+5. Jika memungkinkan, olah menjadi produk turunan yang tahan lama (misal: susu jadi yogurt, roti jadi bread crumbs)
+
+Fokus pada aksi CEPAT dalam hitungan jam.`;
+            } else if (daysLeft <= 2) {
+                // Critical: 1-2 hari
+                contextPrompt = `CRITICAL: Produk ini akan expired dalam ${daysLeft} hari. Perlu aksi cepat untuk menghindari kerugian total.`;
+                actionFocus = `Berikan 3-4 rekomendasi ACTIONABLE untuk produk yang expired dalam ${daysLeft} hari:
+1. Strategi diskon agresif (50-70%) dengan promosi menarik
+2. Bundle deal atau paket hemat
+3. Program member/loyalitas eksklusif
+4. Kerjasama dengan restoran, katering, atau cafe untuk bulk purchase dengan diskon
+5. Donasi terencana ke lembaga sosial sebagai CSR
+
+Sertakan contoh konkret promosi yang bisa langsung diterapkan.`;
+            } else if (daysLeft <= 5) {
+                // Warning: 3-5 hari
+                contextPrompt = `WARNING: Produk ini akan expired dalam ${daysLeft} hari. Masih ada waktu untuk strategi penjualan yang efektif.`;
+                actionFocus = `Berikan 3-4 rekomendasi STRATEGIS untuk produk yang expired dalam ${daysLeft} hari:
+1. Diskon bertahap (mulai 20-30%, naik setiap hari)
+2. Promosi "Limited Time Offer" atau "Flash Deal"
+3. Cross-selling dengan produk terkait
+4. Marketing digital (social media, WhatsApp blast, email marketing)
+5. Placement strategis di area high-traffic dengan signage menarik
+
+Fokus pada strategi marketing yang dapat meningkatkan awareness dan penjualan.`;
+            } else {
+                // Safe: >5 hari
+                contextPrompt = `INFO: Produk ini masih aman, expired dalam ${daysLeft} hari. Ini waktu yang tepat untuk perencanaan preventif.`;
+                actionFocus = `Berikan 3-4 rekomendasi PREVENTIF untuk menghindari food waste:
+1. Sistem inventory management: FEFO (First Expired First Out)
+2. Monitoring stock dan forecasting demand lebih akurat
+3. Strategi pembelian yang lebih efisien (order quantity optimal)
+4. Program pre-order atau reservation untuk produk mendekati expired
+5. Training staff tentang inventory rotation dan quality check
+
+Fokus pada sistem dan prosedur untuk mencegah produk mencapai masa kritis.`;
+            }
+
+            const prompt = `Kamu adalah konsultan food waste management untuk supermarket di Indonesia.
+
+INFORMASI PRODUK:
 - Nama: ${product.name}
 - Kategori: ${product.category}
 - Jumlah: ${product.quantity} unit
-- Harga: Rp ${product.price}
-- Hari tersisa sebelum expired: ${daysLeft} hari
+- Harga Normal: Rp ${parseInt(product.price).toLocaleString()}
+- Lokasi: ${product.location}
+- Status Expired: ${daysLeft < 0 ? `Sudah expired ${Math.abs(daysLeft)} hari yang lalu` : daysLeft === 0 ? "Expired HARI INI" : `${daysLeft} hari lagi`}
 
-Berikan 3-4 rekomendasi konkret dan actionable untuk mengurangi food waste produk ini. Format jawaban dalam poin-poin singkat dan praktis.
+${contextPrompt}
 
-Setelah itu, berikan 3 kata kunci pencarian YouTube untuk tutorial video yang relevan. Format:
+${actionFocus}
+
+PENTING:
+- Berikan rekomendasi yang SPESIFIK dan ACTIONABLE (bisa langsung diterapkan)
+- Sesuaikan dengan konteks Indonesia (regulasi, budaya, market)
+- Sertakan estimasi waktu implementasi jika relevan
+- Gunakan format yang jelas dengan poin-poin terstruktur
+- Jika ada pertimbangan hukum/kesehatan, WAJIB disebutkan
+
+Setelah memberikan rekomendasi, berikan 3 kata kunci pencarian YouTube untuk tutorial yang relevan dengan kondisi produk ini. Format:
+
 SEARCH KEYWORDS:
-1. [Kata kunci bahasa Indonesia]
-2. [Kata kunci bahasa Indonesia]  
-3. [Kata kunci bahasa Indonesia]
-
-Contoh: "cara mengurangi food waste dairy", "resep susu hampir expired", "tips penjualan produk mendekati expired"`;
+1. [Kata kunci dalam Bahasa Indonesia yang spesifik]
+2. [Kata kunci dalam Bahasa Indonesia yang spesifik]
+3. [Kata kunci dalam Bahasa Indonesia yang spesifik]`;
 
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        contents: [{
-                            parts: [{ text: prompt }]
-                        }]
-                    })
+                        contents: [
+                            {
+                                parts: [{ text: prompt }],
+                            },
+                        ],
+                    }),
                 });
 
                 const data = await response.json();
-                
+
                 if (data.candidates && data.candidates[0]) {
                     const fullText = data.candidates[0].content.parts[0].text;
-                    
-                    const parts = fullText.split('SEARCH KEYWORDS:');
+
+                    // Split antara saran dan search keywords dengan case-insensitive
+                    const keywordRegex = /SEARCH KEYWORDS?:?\s*/i;
+                    const parts = fullText.split(keywordRegex);
                     const suggestions = parts[0].trim();
-                    const keywordSection = parts[1] || '';
-                    
-                    
+                    const keywordSection = parts[1] || "";
+
+                    // Format the AI suggestions with better styling
                     aiContent.innerHTML = formatAISuggestions(suggestions);
-                    
-                    
+
+                    // Parse search keywords dengan lebih flexible
                     if (keywordSection) {
-                        const keywordLines = keywordSection.split('\n').filter(line => line.trim() && /^\d+\./.test(line.trim()));
-                        const keywords = keywordLines.map(line => {
-                            return line.replace(/^\d+\.\s*/, '').trim();
-                        }).filter(k => k.length > 0);
-                        
-                        if (keywords.length > 0) {
-                            displayVideoLinks(keywords);
+                        // Ambil semua baris yang dimulai dengan angka atau bullet point
+                        const lines = keywordSection.split("\n");
+                        const keywords = [];
+
+                        for (let line of lines) {
+                            line = line.trim();
+                            // Match: "1. keyword" atau "- keyword" atau "* keyword"
+                            const match = line.match(/^[\d\-\*\•]+[\.\):]?\s*(.+)$/);
+                            if (match && match[1]) {
+                                let keyword = match[1].trim();
+                                // Remove quotes and brackets
+                                keyword = keyword.replace(/^["'\[\(]+|["'\]\)]+$/g, "");
+                                if (keyword.length > 5) {
+                                    // Minimal 5 karakter
+                                    keywords.push(keyword);
+                                }
+                            }
                         }
+
+                        // Jika tidak ada keywords yang diparsing, buat default keywords
+                        if (keywords.length === 0) {
+                            const daysLeft = getDaysUntilExpiry(product.expiryDate);
+                            if (daysLeft < 0) {
+                                keywords.push(`cara buang ${product.category} expired dengan aman`);
+                                keywords.push(`kompos dari ${product.category}`);
+                                keywords.push(`food waste management Indonesia`);
+                            } else if (daysLeft <= 2) {
+                                keywords.push(`cara jual ${product.category} hampir expired`);
+                                keywords.push(`diskon flash sale supermarket`);
+                                keywords.push(`food rescue Indonesia`);
+                            } else {
+                                keywords.push(`mengurangi food waste ${product.category}`);
+                                keywords.push(`strategi penjualan makanan mendekati expired`);
+                                keywords.push(`inventory management supermarket`);
+                            }
+                        }
+
+                        displayVideoLinks(keywords.slice(0, 3)); // Maksimal 3 keywords
+                    } else {
+                        // Jika tidak ada keyword section sama sekali, buat default
+                        const daysLeft = getDaysUntilExpiry(product.expiryDate);
+                        const defaultKeywords = [];
+                        if (daysLeft < 0) {
+                            defaultKeywords.push(`cara buang ${product.category} expired dengan aman`);
+                            defaultKeywords.push(`kompos dari ${product.category}`);
+                            defaultKeywords.push(`food waste management Indonesia`);
+                        } else if (daysLeft <= 2) {
+                            defaultKeywords.push(`cara jual ${product.category} hampir expired`);
+                            defaultKeywords.push(`diskon flash sale supermarket`);
+                            defaultKeywords.push(`food rescue Indonesia`);
+                        } else {
+                            defaultKeywords.push(`mengurangi food waste ${product.category}`);
+                            defaultKeywords.push(`strategi penjualan makanan mendekati expired`);
+                            defaultKeywords.push(`inventory management supermarket`);
+                        }
+                        displayVideoLinks(defaultKeywords);
                     }
                 } else if (data.error) {
                     aiContent.innerHTML = `<p style="color: #ef4444;">❌ Error: ${data.error.message}</p><p>Periksa API Key Anda atau pastikan API sudah aktif.</p>`;
@@ -942,92 +1114,92 @@ Contoh: "cara mengurangi food waste dairy", "resep susu hampir expired", "tips p
         }
 
         function formatAISuggestions(text) {
-            
-            text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            
-            
-            text = text.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
-            
-            
+            // Replace **text** with styled strong tags
+            text = text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+            // Replace *text* with styled em tags
+            text = text.replace(/\*([^*]+?)\*/g, "<em>$1</em>");
+
+            // Split into sections by "Rekomendasi:" or numbered lists
             let formatted = text;
-            
-            
-            const lines = formatted.split('\n');
-            let html = '';
+
+            // Detect and style recommendation sections
+            const lines = formatted.split("\n");
+            let html = "";
             let inRecommendation = false;
             let recommendationItems = [];
-            
+
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
-                
-                
-                if (line.includes('Rekomendasi:') || line.includes('rekomendasi:')) {
+
+                // Check if it's a header line (contains "Rekomendasi" or ends with ":")
+                if (line.includes("Rekomendasi:") || line.includes("rekomendasi:")) {
                     if (recommendationItems.length > 0) {
                         html += '<div class="ai-recommendation">';
-                        recommendationItems.forEach(item => {
+                        recommendationItems.forEach((item) => {
                             html += `<div class="ai-recommendation-item">${item}</div>`;
                         });
-                        html += '</div>';
+                        html += "</div>";
                         recommendationItems = [];
                     }
-                    html += `<h3>💡 ${line.replace(/\*\*/g, '')}</h3>`;
+                    html += `<h3>💡 ${line.replace(/\*\*/g, "")}</h3>`;
                     inRecommendation = true;
                 }
-                
+                // Check if it's a bullet point or numbered list
                 else if (line.match(/^[\*\-\•]\s+/) || line.match(/^\d+\.\s+/)) {
-                    const cleanLine = line.replace(/^[\*\-\•]\s+/, '').replace(/^\d+\.\s+/, '');
+                    const cleanLine = line.replace(/^[\*\-\•]\s+/, "").replace(/^\d+\.\s+/, "");
                     if (inRecommendation) {
                         recommendationItems.push(cleanLine);
                     } else {
                         html += `<div class="ai-recommendation-item">${cleanLine}</div>`;
                     }
                 }
-                
+                // Regular paragraph
                 else if (line.length > 0) {
                     if (recommendationItems.length > 0) {
                         html += '<div class="ai-recommendation">';
-                        recommendationItems.forEach(item => {
+                        recommendationItems.forEach((item) => {
                             html += `<div class="ai-recommendation-item">${item}</div>`;
                         });
-                        html += '</div>';
+                        html += "</div>";
                         recommendationItems = [];
                         inRecommendation = false;
                     }
                     html += `<p>${line}</p>`;
                 }
-                
+                // Empty line
                 else {
                     if (recommendationItems.length > 0) {
                         html += '<div class="ai-recommendation">';
-                        recommendationItems.forEach(item => {
+                        recommendationItems.forEach((item) => {
                             html += `<div class="ai-recommendation-item">${item}</div>`;
                         });
-                        html += '</div>';
+                        html += "</div>";
                         recommendationItems = [];
                         inRecommendation = false;
                     }
                 }
             }
-            
-            
+
+            // Handle remaining recommendation items
             if (recommendationItems.length > 0) {
                 html += '<div class="ai-recommendation">';
-                recommendationItems.forEach(item => {
+                recommendationItems.forEach((item) => {
                     html += `<div class="ai-recommendation-item">${item}</div>`;
                 });
-                html += '</div>';
+                html += "</div>";
             }
-            
+
             return html || text;
         }
-
         function displayVideoLinks(keywords) {
-            const videoContainer = document.getElementById('videoContainer');
-            const videoLinks = document.getElementById('videoLinks');
-            
-            videoLinks.innerHTML = keywords.map((keyword, index) => {
-                const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(keyword)}`;
-                return `
+            const videoContainer = document.getElementById("videoContainer");
+            const videoLinks = document.getElementById("videoLinks");
+
+            videoLinks.innerHTML = keywords
+                .map((keyword, index) => {
+                    const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(keyword)}`;
+                    return `
                     <div class="video-link-card">
                         <a href="${searchUrl}" target="_blank">
                             <div class="video-icon">🎬</div>
@@ -1036,12 +1208,14 @@ Contoh: "cara mengurangi food waste dairy", "resep susu hampir expired", "tips p
                         </a>
                     </div>
                 `;
-            }).join('');
-            
-            videoContainer.style.display = 'block';
+                })
+                .join("");
+
+            videoContainer.style.display = "block";
         }
 
         init();
     </script>
 </body>
+
 </html>
