@@ -927,12 +927,12 @@
 
             const daysLeft = getDaysUntilExpiry(product.expiryDate);
 
-            // Buat prompt yang lebih spesifik berdasarkan kondisi produk
+            
             let contextPrompt = "";
             let actionFocus = "";
 
             if (daysLeft < 0) {
-                // Produk sudah expired
+                
                 const daysExpired = Math.abs(daysLeft);
                 contextPrompt = `PENTING: Produk ini sudah EXPIRED ${daysExpired} hari yang lalu. Produk ini TIDAK BOLEH dijual atau dikonsumsi manusia.`;
                 actionFocus = `Berikan 3-4 rekomendasi KHUSUS untuk produk yang sudah expired:
@@ -944,7 +944,7 @@
 
 JANGAN rekomendasikan untuk dijual, dikonsumsi, atau diberikan ke manusia.`;
             } else if (daysLeft === 0) {
-                // Expired hari ini
+                
                 contextPrompt = `URGENT: Produk ini akan EXPIRED HARI INI. Ini adalah kesempatan terakhir untuk mengurangi kerugian.`;
                 actionFocus = `Berikan 3-4 rekomendasi URGENT untuk produk yang expired hari ini:
 1. Diskon flash sale 70-90% untuk jual habis dalam beberapa jam
@@ -955,7 +955,7 @@ JANGAN rekomendasikan untuk dijual, dikonsumsi, atau diberikan ke manusia.`;
 
 Fokus pada aksi CEPAT dalam hitungan jam.`;
             } else if (daysLeft <= 2) {
-                // Critical: 1-2 hari
+                
                 contextPrompt = `CRITICAL: Produk ini akan expired dalam ${daysLeft} hari. Perlu aksi cepat untuk menghindari kerugian total.`;
                 actionFocus = `Berikan 3-4 rekomendasi ACTIONABLE untuk produk yang expired dalam ${daysLeft} hari:
 1. Strategi diskon agresif (50-70%) dengan promosi menarik
@@ -966,7 +966,7 @@ Fokus pada aksi CEPAT dalam hitungan jam.`;
 
 Sertakan contoh konkret promosi yang bisa langsung diterapkan.`;
             } else if (daysLeft <= 5) {
-                // Warning: 3-5 hari
+                
                 contextPrompt = `WARNING: Produk ini akan expired dalam ${daysLeft} hari. Masih ada waktu untuk strategi penjualan yang efektif.`;
                 actionFocus = `Berikan 3-4 rekomendasi STRATEGIS untuk produk yang expired dalam ${daysLeft} hari:
 1. Diskon bertahap (mulai 20-30%, naik setiap hari)
@@ -977,7 +977,7 @@ Sertakan contoh konkret promosi yang bisa langsung diterapkan.`;
 
 Fokus pada strategi marketing yang dapat meningkatkan awareness dan penjualan.`;
             } else {
-                // Safe: >5 hari
+                
                 contextPrompt = `INFO: Produk ini masih aman, expired dalam ${daysLeft} hari. Ini waktu yang tepat untuk perencanaan preventif.`;
                 actionFocus = `Berikan 3-4 rekomendasi PREVENTIF untuk menghindari food waste:
 1. Sistem inventory management: FEFO (First Expired First Out)
@@ -1001,6 +1001,9 @@ INFORMASI PRODUK:
 
 ${contextPrompt}
 
+Beri jawaban rekomendasi diatas berdasarkan jurnal yang anda temukan di internet!!
+Serta tidak perlu menampilkan pendahuluan dan sebagainya.
+
 ${actionFocus}
 
 PENTING:
@@ -1018,7 +1021,7 @@ SEARCH KEYWORDS:
 3. [Kata kunci dalam Bahasa Indonesia yang spesifik]`;
 
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemma-3-4b-it:generateContent?key=${apiKey}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -1035,37 +1038,36 @@ SEARCH KEYWORDS:
                 if (data.candidates && data.candidates[0]) {
                     const fullText = data.candidates[0].content.parts[0].text;
 
-                    // Split antara saran dan search keywords dengan case-insensitive
                     const keywordRegex = /SEARCH KEYWORDS?:?\s*/i;
                     const parts = fullText.split(keywordRegex);
                     const suggestions = parts[0].trim();
                     const keywordSection = parts[1] || "";
 
-                    // Format the AI suggestions with better styling
+                    
                     aiContent.innerHTML = formatAISuggestions(suggestions);
 
-                    // Parse search keywords dengan lebih flexible
+                    
                     if (keywordSection) {
-                        // Ambil semua baris yang dimulai dengan angka atau bullet point
+                        
                         const lines = keywordSection.split("\n");
                         const keywords = [];
 
                         for (let line of lines) {
                             line = line.trim();
-                            // Match: "1. keyword" atau "- keyword" atau "* keyword"
+                            
                             const match = line.match(/^[\d\-\*\•]+[\.\):]?\s*(.+)$/);
                             if (match && match[1]) {
                                 let keyword = match[1].trim();
-                                // Remove quotes and brackets
+                                
                                 keyword = keyword.replace(/^["'\[\(]+|["'\]\)]+$/g, "");
                                 if (keyword.length > 5) {
-                                    // Minimal 5 karakter
+                                    
                                     keywords.push(keyword);
                                 }
                             }
                         }
 
-                        // Jika tidak ada keywords yang diparsing, buat default keywords
+                        
                         if (keywords.length === 0) {
                             const daysLeft = getDaysUntilExpiry(product.expiryDate);
                             if (daysLeft < 0) {
@@ -1083,9 +1085,9 @@ SEARCH KEYWORDS:
                             }
                         }
 
-                        displayVideoLinks(keywords.slice(0, 3)); // Maksimal 3 keywords
+                        displayVideoLinks(keywords.slice(0, 3)); 
                     } else {
-                        // Jika tidak ada keyword section sama sekali, buat default
+                        
                         const daysLeft = getDaysUntilExpiry(product.expiryDate);
                         const defaultKeywords = [];
                         if (daysLeft < 0) {
@@ -1114,16 +1116,16 @@ SEARCH KEYWORDS:
         }
 
         function formatAISuggestions(text) {
-            // Replace **text** with styled strong tags
+            
             text = text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 
-            // Replace *text* with styled em tags
+            
             text = text.replace(/\*([^*]+?)\*/g, "<em>$1</em>");
 
-            // Split into sections by "Rekomendasi:" or numbered lists
+            
             let formatted = text;
 
-            // Detect and style recommendation sections
+            
             const lines = formatted.split("\n");
             let html = "";
             let inRecommendation = false;
@@ -1132,7 +1134,7 @@ SEARCH KEYWORDS:
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
 
-                // Check if it's a header line (contains "Rekomendasi" or ends with ":")
+                
                 if (line.includes("Rekomendasi:") || line.includes("rekomendasi:")) {
                     if (recommendationItems.length > 0) {
                         html += '<div class="ai-recommendation">';
@@ -1145,7 +1147,7 @@ SEARCH KEYWORDS:
                     html += `<h3>💡 ${line.replace(/\*\*/g, "")}</h3>`;
                     inRecommendation = true;
                 }
-                // Check if it's a bullet point or numbered list
+                
                 else if (line.match(/^[\*\-\•]\s+/) || line.match(/^\d+\.\s+/)) {
                     const cleanLine = line.replace(/^[\*\-\•]\s+/, "").replace(/^\d+\.\s+/, "");
                     if (inRecommendation) {
@@ -1154,7 +1156,7 @@ SEARCH KEYWORDS:
                         html += `<div class="ai-recommendation-item">${cleanLine}</div>`;
                     }
                 }
-                // Regular paragraph
+                
                 else if (line.length > 0) {
                     if (recommendationItems.length > 0) {
                         html += '<div class="ai-recommendation">';
@@ -1167,7 +1169,7 @@ SEARCH KEYWORDS:
                     }
                     html += `<p>${line}</p>`;
                 }
-                // Empty line
+                
                 else {
                     if (recommendationItems.length > 0) {
                         html += '<div class="ai-recommendation">';
@@ -1181,7 +1183,7 @@ SEARCH KEYWORDS:
                 }
             }
 
-            // Handle remaining recommendation items
+            
             if (recommendationItems.length > 0) {
                 html += '<div class="ai-recommendation">';
                 recommendationItems.forEach((item) => {
